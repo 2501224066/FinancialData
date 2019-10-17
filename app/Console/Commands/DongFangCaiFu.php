@@ -39,7 +39,7 @@ class DongFangCaiFu extends Command
             $url = $address . randNum(16) . "&_=" . getMillisecond();
             $list = json_decode(substr(file_get_contents($url), 15))->LivesList;
 
-            // 全球直播插入更新数据，其他地址仅更新分类
+            // 全球直播插入更新数据，其他地址仅用于确定分类
             if ($classify == '全球直播') {
                 foreach ($list as $v) {
                     $this->newsDfcf->updateOrCreate([
