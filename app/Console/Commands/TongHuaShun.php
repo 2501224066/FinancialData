@@ -12,9 +12,12 @@ class TongHuaShun extends Command
 
     protected $description = '抓取同花顺新闻';
 
-    public function __construct()
+    protected $newsThs;
+
+    public function __construct(NewsThs $newsThs)
     {
         parent::__construct();
+        $this->newsThs = $newsThs;
     }
 
     public function handle()
@@ -35,7 +38,7 @@ class TongHuaShun extends Command
         $list = $response->data->list;
 
         foreach($list as $v) {
-            NewsThs::updateOrCreate([
+            $this->newsThs->updateOrCreate([
                 'seq' => $v->seq
             ],[
                 'title' => $v->title,

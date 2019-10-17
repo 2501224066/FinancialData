@@ -12,9 +12,12 @@ class JinShi extends Command
 
     protected $description = '抓取金十数据';
 
-    public function __construct()
+    protected $newsJs;
+
+    public function __construct(NewsJs $newsJs)
     {
         parent::__construct();
+        $this->newsJs = $newsJs;
     }
 
     public function handle()
@@ -28,7 +31,7 @@ class JinShi extends Command
                 continue;
             }
             
-            NewsJs::updateOrCreate([
+            $this->newsJs->updateOrCreate([
                 'seq' => $v->id
             ], [
                 'content' => $v->data->content,

@@ -13,9 +13,12 @@ class YunCaiJIng extends Command
 
     protected $description = '云财经';
 
-    public function __construct()
+    protected $newsYcj;
+
+    public function __construct(NewsYcj $newsYcj)
     {
         parent::__construct();
+        $this->newsYcj = $newsYcj;
     }
 
     public function handle()
@@ -32,10 +35,10 @@ class YunCaiJIng extends Command
         ]);
 
         // 最近的数据唯一标识
-        $id = NewsYcj::orderBy('created_at', 'DESC')->first()->seq;
+        $id = $this->newsYcj->orderBy('created_at', 'DESC')->first()->seq;
 
+        // 以最近标识 +300 为范围采集
         for ($i = ($id + 1); $i < ($id + 300); $i++) {
-            //发送请求获取页面内容
             $response = $client->request('POST', $url, [
                 'form_params' => ['id' => $i]
             ])->getBody()->getContents();
@@ -45,7 +48,7 @@ class YunCaiJIng extends Command
                 continue;
             }
 
-            NewsYcj::updateOrCreate([
+            $this->newsYcj->updateOrCreate([
                 'seq' => $data->id
             ], [
                 'title' => $data->title,

@@ -12,9 +12,12 @@ class XinLang extends Command
 
     protected $description = '抓取新浪财经';
 
-    public function __construct()
+    protected $newsXl;
+
+    public function __construct(NewsXl $newsXl)
     {
         parent::__construct();
+        $this->newsXl = $newsXl;
     }
 
     public function handle()
@@ -24,7 +27,7 @@ class XinLang extends Command
         $list =  json_decode('{' . trim(substr(file_get_contents($url), 45), ');} catch (e) {};') . '}}}}')->result->data->feed->list;
 
         foreach ($list as $v) {
-            NewsXl::updateOrCreate([
+            $this->newsXl->updateOrCreate([
                 'seq' => $v->id
             ], [
                 'content' => $v->rich_text,
