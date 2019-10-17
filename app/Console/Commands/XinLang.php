@@ -37,14 +37,14 @@ class XinLang extends Command
         foreach ($this->address_classify as $address => $classify) {
             // 目标地址
             $url = $address . getMillisecond();
-            $res = file_get_contents($url);
-            $list =  json_decode('{' . trim(substr($res, strpos($res, '(')), ');} catch (e) {};') . '}}}}')->result->data->feed->list;
+            $res_data = file_get_contents($url);
+            $list =  json_decode('{' . trim(substr($res_data, strpos($res_data, '(')), ');} catch (e) {};') . '}}}}')->result->data->feed->list;
 
             foreach ($list as $v) {
                 $this->newsXl->updateOrCreate([
                     'seq' => $v->id
                 ], [
-                    'content' => $v->rich_text,
+                    'content' => trim($v->rich_text),
                     'color' => json_decode($v->ext)->needPush ? 2 : 1,
                     'time' => $v->create_time,
                     'classify' => $classify
