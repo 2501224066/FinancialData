@@ -17,13 +17,13 @@ class DongFangCaiFu extends Command
 
     // 地址与分类
     protected $address_classify = [
-        'http://newsapi.eastmoney.com/kuaixun/v1/getlist_102_ajaxResult_50_1_201910101256879319.html?r=0.' => '全球直播',
+        'http://newsapi.eastmoney.com/kuaixun/v1/getlist_102_ajaxResult_50_1_201910101256879319.html?r=0.' => '其他',
         'http://newsapi.eastmoney.com/kuaixun/v1/getlist_zhiboall_ajaxResult_70_1_.html?r=0.' => '股市直播',
         'http://newsapi.eastmoney.com/kuaixun/v1/getlist_103_ajaxResult_50_1_.html?r=0.' => '上市公司',
         'http://newsapi.eastmoney.com/kuaixun/v1/getlist_105_ajaxResult_50_1_.html?r=0.' => '全球股市',
         'http://newsapi.eastmoney.com/kuaixun/v1/getlist_106_ajaxResult_50_1_.html?r=0.' => '商品',
         'http://newsapi.eastmoney.com/kuaixun/v1/getlist_107_ajaxResult_50_1_.html?r=0.' => '外汇',
-        'http://newsapi.eastmoney.com/kuaixun/v1/getlist_108_ajaxResult_50_1_.html?r=0.' => '基金',
+        'http://newsapi.eastmoney.com/kuaixun/v1/getlist_108_ajaxResult_50_1_.html?r=0.' => '债券',
         'http://newsapi.eastmoney.com/kuaixun/v1/getlist_109_ajaxResult_50_1_.html?r=0.' => '基金'
     ];
 

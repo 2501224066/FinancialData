@@ -25,6 +25,9 @@ $app->withFacades();
 
 $app->withEloquent();
 
+# config
+$app->configure('services');
+
 /*
 |--------------------------------------------------------------------------
 | Register Container Bindings
@@ -57,9 +60,9 @@ $app->singleton(
 |
 */
 
-// $app->middleware([
-//     App\Http\Middleware\ExampleMiddleware::class
-// ]);
+$app->middleware([
+    App\Http\Middleware\CorsMiddleware::class // *跨域中间件
+]);
 
 // $app->routeMiddleware([
 //     'auth' => App\Http\Middleware\Authenticate::class,
