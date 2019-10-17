@@ -54,9 +54,12 @@ class DongFangCaiFu extends Command
                 }
             } else {
                 foreach ($list as $v) {
-                    $this->newsDfcf->where('seq', $v->id)->update([
-                        'classify' => $classify
-                    ]);
+                    $this->newsDfcf
+                        ->where('seq', $v->id)
+                        ->where('classify', '全球直播')
+                        ->update([
+                            'classify' => $classify
+                        ]);
                 }
             }
         }
