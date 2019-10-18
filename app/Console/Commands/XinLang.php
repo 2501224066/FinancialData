@@ -41,6 +41,10 @@ class XinLang extends Command
             $list =  json_decode('{' . trim(substr($res_data, strpos($res_data, '(')), ');} catch (e) {};') . '}}}}')->result->data->feed->list;
 
             foreach ($list as $v) {
+                if (!isset(json_decode($v->ext)->needPush)) {
+                    continue;
+                }
+
                 $this->newsXl->updateOrCreate([
                     'seq' => $v->id
                 ], [
