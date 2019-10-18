@@ -36,7 +36,7 @@ class NewsRepository
     {
         $query = $this->{$site}->orderBy('created_at', 'DESC');
 
-        if ($classify != 0) {
+        if ($classify != null) {
             $query = $query->where('classify', $classify);
         }
 

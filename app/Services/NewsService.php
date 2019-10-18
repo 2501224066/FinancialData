@@ -18,11 +18,11 @@ class NewsService
 
     // 站点
     protected $site = [
-        'dongfangcaifu',
-        'jinshi',
-        'tonghuashun',
-        'xunlang',
-        'yuncaijing'
+        'dongfangcaifu' => '东方财富',
+        'jinshi' => '金十',
+        'tonghuashun' => '同花顺',
+        'xinlang' => '新浪财经',
+        'yuncaijing' => '云财经'
     ];
 
     // 东方财富分类
@@ -58,23 +58,43 @@ class NewsService
         return $this->newsRepository->getNews($site, $classify);
     }
 
-    // 获取站点
+    // 获取站点和分类
+    public function getSiteAndClassify()
+    {
+        $site_id = 0;
+        foreach ($this->site as $k => $v) {
+            $data = [];
+            $site_classify = $k . '_classify';
+            $data['site'] = $v;
+            $data['site_id'] = $site_id;
+            if (isset($this->{$site_classify})) {
+                $data['classify'] = $this->{$site_classify};
+            }
+            $siteAndClassify[]  = $data;
+            $site_id++;
+        }
+        return $siteAndClassify;
+    }
+
+    // 取出站点
     public function getSite($site_id)
     {
         if ($site_id >= count($this->site)) {
             throw new Exception('站点不存在');
         }
-        return $this->site[$site_id];
+        $site_key = array_keys($this->site);
+        return $site_key[$site_id];
     }
 
-    // 获取分类
+    // 取出分类
     public function getClassify($site_id, $classify_id)
     {
-        if ($classify_id == 0) {
+        if ($classify_id == null) {
             return $classify_id;
         }
 
-        $site_name = $this->site[$site_id];
+        $site_key = array_keys($this->site);
+        $site_name = $site_key[$site_id];
         $site_classify = $site_name . '_classify';
         if (isset($this->{$site_classify})) {
             if ($classify_id > count($this->{$site_classify})) {

@@ -15,9 +15,17 @@ class NewsController extends Controller
         $this->newsService = $newsService;
     }
 
+    // 获取新闻
     public function index(Request $request)
     {
         $news_list = $this->newsService->getNews($request);
         return $this->success(['news_list' => $news_list]);
+    }
+
+    // 获取站点和分类
+    public function siteAndClassify()
+    {
+        $site_classify = $this->newsService->getSiteAndClassify();
+        return $this->success(['site_classify' => $site_classify]);
     }
 }
