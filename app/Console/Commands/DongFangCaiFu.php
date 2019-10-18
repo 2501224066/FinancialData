@@ -38,10 +38,11 @@ class DongFangCaiFu extends Command
         foreach ($this->address_classify as $address => $classify) {
             $url = $address . randNum(16) . "&_=" . getMillisecond();
             $list = json_decode(substr(file_get_contents($url), 15))->LivesList;
-
-            // 全球直播插入更新数据，其他地址仅用于确定分类
-            if ($classify == '全球直播') {
+    
+            // 全球直播（改为其他）插入更新数据，其他地址仅用于确定分类
+            if ($classify == '其他') {
                 foreach ($list as $v) {
+                    echo 1;
                     $this->newsDfcf->updateOrCreate([
                         'seq' => $v->id
                     ], [
