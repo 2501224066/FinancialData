@@ -89,8 +89,8 @@ class NewsService
     // 取出分类
     public function getClassify($site_id, $classify_id)
     {
-        if ($classify_id == null) {
-            return $classify_id;
+        if ($classify_id == 0) {
+            return null;
         }
 
         $site_key = array_keys($this->site);
