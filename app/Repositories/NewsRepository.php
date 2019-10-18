@@ -15,20 +15,20 @@ class NewsRepository
     protected $jinshi;
     protected $tonghuashun;
     protected $xinlang;
-    protected $yuncaijng;
+    protected $yuncaijing;
 
     public function __construct(
         NewsDfcf $dongfangcaifu,
         NewsJs $jinshi,
         NewsThs $tonghuashun,
         NewsXl $xinlang,
-        NewsYcj $yuncaijng
+        NewsYcj $yuncaijing
     ) {
         $this->dongfangcaifu = $dongfangcaifu;
         $this->jinshi = $jinshi;
         $this->tonghuashun = $tonghuashun;
         $this->xinlang = $xinlang;
-        $this->yuncaijng = $yuncaijng;
+        $this->yuncaijing = $yuncaijing;
     }
 
     // 获取新闻
