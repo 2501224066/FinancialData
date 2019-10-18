@@ -41,15 +41,14 @@ class XinLang extends Command
             $list =  json_decode('{' . trim(substr($res_data, strpos($res_data, '(')), ');} catch (e) {};') . '}}}}')->result->data->feed->list;
 
             foreach ($list as $v) {
-                if (!isset(json_decode($v->ext)->needPush)) {
-                    continue;
-                }
+               
+
 
                 $this->newsXl->updateOrCreate([
                     'seq' => $v->id
                 ], [
                     'content' => trim($v->rich_text),
-                    'color' => json_decode($v->ext)->needPush ? 2 : 1,
+                    'color' => strpos(json_encode($v->tag, JSON_UNESCAPED_UNICODE), '焦点') ? 2 : 1,
                     'time' => $v->create_time,
                     'classify' => $classify
                 ]);
